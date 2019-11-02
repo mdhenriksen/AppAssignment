@@ -20,7 +20,8 @@ def getCompany(id):
       if company.id == id:
          return companyConverter.toJSON(company)
       else:
-         return "Company not found", 404
+         continue
+   return "Company not found", 404
 
 @app.route("/create", methods=['POST'])
 def addCompany():
