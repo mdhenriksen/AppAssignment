@@ -7,4 +7,6 @@ class Company:
         self.country = country
         self.mail = mail
         self.phone = phone
-        
+    
+    def __str__(self):
+        return str(self.id) + " " + str(self.name)
