@@ -5,9 +5,6 @@ class CompanyRepository:
 
     # The connection string would usually be put inside a config file
     engine = db.create_engine('postgres://fyztexzf:178OiBHUrHp3S-2nE39sfeeXdkq9Dqsn@balarama.db.elephantsql.com:5432/fyztexzf')
-    
-    def __init__(self):
-        pass
 
     def createCompany(self, company):
         try:
