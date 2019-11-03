@@ -1,8 +1,8 @@
 from flask import Flask, jsonify, request, Response
-import json
 from CompanyRepository import CompanyRepository
 from CompanyHelperClass import CompanyHelperClass
 from Company import Company
+import json
 
 app = Flask(__name__)
 
@@ -12,12 +12,14 @@ companyRepository = CompanyRepository()
 @app.route("/create", methods=['POST'])
 def addCompany():
       json = request.get_json()
-      company = companyHelper.mapJSON(json)
-      companyRepository.createCompany(company)
-      return companyHelper.toJSON(company)
-
+      company = companyHelper.mapCompany(json)
+      if companyRepository.createCompany(company):
+         return Response("Company added", 200)
+      else:
+         return Response("Error adding company", 404)
+      
 @app.route("/get", methods=['GET'])
-def listOfCompanies():
+def getCompanies():
       companies = companyRepository.getCompanies()
       return Response(companies, mimetype='application/json')
 
@@ -29,16 +31,21 @@ def getCompany(id):
 @app.route("/update/<string:id>", methods=['PUT'])
 def updateCompany(id):
       json = request.get_json()
-      companyJSON = companyHelper.mapJSON(json)
+      companyJSON = companyHelper.mapCompany(json)
       company = companyRepository.updateCompany(id, companyJSON)
       if company != 'error':
-         return companyHelper.toJSON(company)
+         return Response("Company updated", 200)
       else:
-         return Response("Company ID not found", 404)
+         return Response("Error updating company", 404)
 
-@app.route("/add-owner/<string:owner>", methods=['POST'])
-def addOwner(owner):
-      return "add owner endpoint " + owner
+@app.route("/owner", methods=['POST'])
+def addOwner():
+      json = request.get_json()
+      owner = companyHelper.mapOwner(json)
+      if companyRepository.addOwner(owner):
+         return Response("Owner added", 200)
+      else:
+         return Response("Error adding owner", 404)
 
 if __name__ == '__main__':
     app.run()

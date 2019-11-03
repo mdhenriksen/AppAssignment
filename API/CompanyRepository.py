@@ -5,39 +5,7 @@ class CompanyRepository:
 
     # The connection string would usually be put inside a config file
     engine = db.create_engine('postgres://fyztexzf:178OiBHUrHp3S-2nE39sfeeXdkq9Dqsn@balarama.db.elephantsql.com:5432/fyztexzf')
-    
-    def __init__(self):
-        pass
-    
-    def getCompanies(self):
-        try:
-            connection = self.engine.connect()
-            metadata = db.MetaData()
-            table = db.Table('companies', metadata, autoload=True, autoload_with=self.engine)
-            query = db.select([table])
-            ResultProxy = connection.execute(query)
-            #ResultSet = ResultProxy.fetchall()
-            #dataFrame = pandas.DataFrame(ResultSet)
-            #dataFrame.columns = ResultSet[0].keys()
-            return json.dumps([dict(r) for r in ResultProxy])
-            #return dataFrame
-        except:
-            print("Exception in 'getCompanies'.")
-            return False
 
-    def getCompany(self, id):
-        try:
-            connection = self.engine.connect()
-            metadata = db.MetaData()
-            table = db.Table('companies', metadata, autoload=True, autoload_with=self.engine)
-            query = db.select([table]).where(table.columns.id == id)
-            ResultProxy = connection.execute(query)
-            # Could be DataFrame in pandas
-            return json.dumps([dict(r) for r in ResultProxy])
-        except:
-            print("Exception in 'getCompany'.")
-            return False
-    
     def createCompany(self, company):
         try:
             connection = self.engine.connect()
@@ -67,3 +35,39 @@ class CompanyRepository:
         except:
             print("Exception in 'updateCompany'.")
             return 'error'
+
+    def getCompany(self, id):
+        try:
+            connection = self.engine.connect()
+            metadata = db.MetaData()
+            table = db.Table('companies', metadata, autoload=True, autoload_with=self.engine)
+            query = db.select([table]).where(table.columns.id == id)
+            ResultProxy = connection.execute(query)
+            return json.dumps([dict(r) for r in ResultProxy])
+        except:
+            print("Exception in 'getCompany'.")
+            return False
+
+    def getCompanies(self):
+        try:
+            connection = self.engine.connect()
+            metadata = db.MetaData()
+            table = db.Table('companies', metadata, autoload=True, autoload_with=self.engine)
+            query = db.select([table])
+            ResultProxy = connection.execute(query)
+            return json.dumps([dict(r) for r in ResultProxy])
+        except:
+            print("Exception in 'getCompanies'.")
+            return False
+
+    def addOwner(self, owner):
+        try:
+            connection = self.engine.connect()
+            metadata = db.MetaData()
+            table = db.Table('owners', metadata, autoload=True, autoload_with=self.engine)
+            query = db.insert(table).values(company_id=owner.id, owner=owner.name)
+            connection.execute(query)
+            return True
+        except:
+            print("Exception in 'addOwner'.")
+            return False
