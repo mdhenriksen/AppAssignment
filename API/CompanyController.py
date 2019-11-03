@@ -1,8 +1,8 @@
 from flask import Flask, jsonify, request, Response
-import json
 from CompanyRepository import CompanyRepository
 from CompanyHelperClass import CompanyHelperClass
 from Company import Company
+import json
 
 app = Flask(__name__)
 
@@ -14,7 +14,7 @@ def addCompany():
       json = request.get_json()
       company = companyHelper.mapCompany(json)
       if companyRepository.createCompany(company):
-         return Response("Added company", 200)
+         return Response("Company added", 200)
       else:
          return Response("Error adding company", 404)
       
@@ -34,16 +34,16 @@ def updateCompany(id):
       companyJSON = companyHelper.mapCompany(json)
       company = companyRepository.updateCompany(id, companyJSON)
       if company != 'error':
-         return companyHelper.companyToJSON(company)
+         return Response("Company updated", 200)
       else:
-         return Response("Company ID not found", 404)
+         return Response("Error updating company", 404)
 
 @app.route("/owner", methods=['POST'])
 def addOwner():
       json = request.get_json()
       owner = companyHelper.mapOwner(json)
       if companyRepository.addOwner(owner):
-         return Response("Added owner", 200)
+         return Response("Owner added", 200)
       else:
          return Response("Error adding owner", 404)
 

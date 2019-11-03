@@ -3,6 +3,7 @@ from Company import Company
 from Owner import Owner
 
 class CompanyHelperClass:
+    # Useful if in need of returning an object as JSON
     def companyToJSON(self, object):
         return jsonify(
             id=object.id,
