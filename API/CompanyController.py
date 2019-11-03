@@ -13,11 +13,13 @@ companyRepository = CompanyRepository()
 def addCompany():
       json = request.get_json()
       company = companyHelper.mapCompany(json)
-      companyRepository.createCompany(company)
-      return companyHelper.toJSON(company)
-
+      if companyRepository.createCompany(company):
+         return Response("Added company", 200)
+      else:
+         return Response("Error adding company", 404)
+      
 @app.route("/get", methods=['GET'])
-def listOfCompanies():
+def getCompanies():
       companies = companyRepository.getCompanies()
       return Response(companies, mimetype='application/json')
 
@@ -40,8 +42,10 @@ def updateCompany(id):
 def addOwner():
       json = request.get_json()
       owner = companyHelper.mapOwner(json)
-      companyRepository.addOwner(owner)
-      return companyHelper.ownerToJSON(owner)
+      if companyRepository.addOwner(owner):
+         return Response("Added owner", 200)
+      else:
+         return Response("Error adding owner", 404)
 
 if __name__ == '__main__':
     app.run()
