@@ -7,4 +7,5 @@
 * ``sudo apt-get install python-psycopg2``
 * ``sudo apt-get install libpq-dev``
 * ``pip3 install sqlalchemy``
+* ``pip3 install pandas`` - Dataframes
 
