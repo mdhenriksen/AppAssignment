@@ -34,7 +34,7 @@ def updateCompany(id):
       companyJSON = companyHelper.mapCompany(json)
       company = companyRepository.updateCompany(id, companyJSON)
       if company != 'error':
-         return companyHelper.toJSON(company)
+         return companyHelper.companyToJSON(company)
       else:
          return Response("Company ID not found", 404)
 

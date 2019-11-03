@@ -3,7 +3,7 @@ from Company import Company
 from Owner import Owner
 
 class CompanyHelperClass:
-    def toJSON(self, object):
+    def companyToJSON(self, object):
         return jsonify(
             id=object.id,
             name=object.name,
