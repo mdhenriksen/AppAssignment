@@ -9,4 +9,5 @@ class Company:
         self.phone = phone
     
     def __str__(self):
-        return str(self.id) + " " + str(self.name)
+        return str(self.id + " " + self.name + " " + self.address 
+        + " " + self.city + " " + self.country + " " + self.mail + " " + self.phone)
