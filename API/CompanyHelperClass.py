@@ -1,7 +1,6 @@
 from flask import Flask, jsonify
 from Company import Company
-
-# Helper class for converting company objects to JSON
+from Owner import Owner
 
 class CompanyHelperClass:
     def toJSON(self, object):
@@ -14,8 +13,14 @@ class CompanyHelperClass:
             mail=object.mail,
             phone=object.phone
          )
+    
+    def ownerToJSON(self, object):
+        return jsonify(id =object.id, name=object.name)
 
-    def mapJSON(self, object):
+    def mapCompany(self, object):
         json = object
         return Company(id=json['id'], name=json['name'], address=json['address'], city=json['city'], country=json['country'], mail=json['mail'], phone=json['phone'])
-         
+
+    def mapOwner(self, object):
+        json = object
+        return Owner(id=json['id'], name=json['name'])

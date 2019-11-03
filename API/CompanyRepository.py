@@ -67,3 +67,15 @@ class CompanyRepository:
         except:
             print("Exception in 'updateCompany'.")
             return 'error'
+
+    def addOwner(self, owner):
+        try:
+            connection = self.engine.connect()
+            metadata = db.MetaData()
+            table = db.Table('owners', metadata, autoload=True, autoload_with=self.engine)
+            query = db.insert(table).values(company_id=owner.id, owner=owner.name)
+            connection.execute(query)
+            return True
+        except:
+            print("Exception in 'addOwner'.")
+            return False
