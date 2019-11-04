@@ -29,7 +29,7 @@ class CompanyList extends Component {
         this.getCompanies = () => this.props.companyStore.getCompanies();
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getCompanies();
     }
 
@@ -42,7 +42,7 @@ class CompanyList extends Component {
         <h1>List & update companies</h1>
         <div>
         {companies.map(company => (
-            <div>
+            <div key={company.id}>
                 <div><h3>{company.name}</h3>
                  <Button className={classes.button} variant="outlined" component={ Link } to={'/details/' + company.id}>See details</Button>
                  <Button className={classes.button} variant="outlined" component={ Link } to={'/edit/' + company.id}>Edit</Button>
