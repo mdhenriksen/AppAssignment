@@ -1,10 +1,13 @@
 from flask import Flask, jsonify, request, Response
+from flask_cors import CORS
 from CompanyRepository import CompanyRepository
 from CompanyHelperClass import CompanyHelperClass
 from Company import Company
 import json
 
 app = Flask(__name__)
+CORS(app)
+
 
 companyHelper = CompanyHelperClass()
 companyRepository = CompanyRepository()
