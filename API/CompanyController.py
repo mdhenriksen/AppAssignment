@@ -8,7 +8,6 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-
 companyHelper = CompanyHelperClass()
 companyRepository = CompanyRepository()
 

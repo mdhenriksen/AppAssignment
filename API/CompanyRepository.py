@@ -1,5 +1,6 @@
 import sqlalchemy as db
 import json
+import random
 
 class CompanyRepository:
 
@@ -11,7 +12,11 @@ class CompanyRepository:
             connection = self.engine.connect()
             metadata = db.MetaData()
             table = db.Table('companies', metadata, autoload=True, autoload_with=self.engine)
-            query = db.insert(table).values(id=company.id, name=company.name, address=company.address, 
+            if company.mail == "":
+                company.mail = ""
+            if company.phone == "":
+                company.phone = None
+            query = db.insert(table).values(id=random.randint(0,1000), name=company.name, address=company.address, 
             city=company.city, country=company.country, mail=company.mail, phone=company.phone)
             connection.execute(query)
             return True
@@ -24,6 +29,10 @@ class CompanyRepository:
             connection = self.engine.connect()
             metadata = db.MetaData()
             table = db.Table('companies', metadata, autoload=True, autoload_with=self.engine)
+            if company.mail == "":
+                company.mail = ""
+            if company.phone == "":
+                company.phone = None
             query = db.update(table).returning(table.c.id).where(table.columns.id == id).values(name=company.name,
             address=company.address, city=company.city, country=company.country, 
             mail=company.mail, phone=company.phone)
