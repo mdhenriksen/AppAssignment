@@ -38,7 +38,7 @@ class EditCompany extends Component {
     @observable phone = " ";
     @observable isEdited = false;
 
-    componentWillMount() {
+    componentDidMount() {
        this.props.companyStore.getCompany(this.props.match.params.id)
     }
 
@@ -75,8 +75,8 @@ class EditCompany extends Component {
           address: (this.address !== "") ? this.address : companyOrigin.address,
           city: (this.city !== "") ? this.city : companyOrigin.city,
           country: (this.country !== "") ? this.country : companyOrigin.country,
-          mail: (this.mail == " ") ? companyOrigin.mail : this.mail,
-          phone: (this.phone == " ") ? companyOrigin.phone : this.phone,
+          mail: (this.mail === " ") ? companyOrigin.mail : this.mail,
+          phone: (this.phone === " ") ? companyOrigin.phone : this.phone,
         }
           this.props.companyStore.updateCompany(company, this.props.match.params.id);
           this.isEdited = !this.isEdited
@@ -92,7 +92,7 @@ class EditCompany extends Component {
         {!this.isEdited &&
         <form className={classes.container} onSubmit={this.submit.bind(this)} autoComplete="off">
         <h1>Edit Company</h1>
-        {company.map(company => (<div className={classes.container}>
+        {company.map(company => (<div className={classes.container} key={company.id}>
         <TextField
         id="standard-required"
         required

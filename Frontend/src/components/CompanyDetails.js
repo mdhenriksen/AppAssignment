@@ -21,7 +21,7 @@ class CompanyDetails extends Component {
         super(props);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.companyStore.getCompany(this.props.match.params.id)
     }
 
@@ -30,7 +30,7 @@ class CompanyDetails extends Component {
     const { company } = this.props.companyStore;
         return(<div className={classes.container}>
             {company.map(company => (
-            <div>
+            <div key={company.id}>
                 <div><h1>{company.name}</h1>
                 <div className={classes.companyField}><h2>Address: {company.address}</h2></div>
                 <div className={classes.companyField}><h2>City: {company.city}</h2></div>
