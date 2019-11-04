@@ -34,8 +34,8 @@ class EditCompany extends Component {
     @observable address = "";
     @observable city = "";
     @observable country = "";
-    @observable mail = "";
-    @observable phone = "";
+    @observable mail = " ";
+    @observable phone = " ";
     @observable isEdited = false;
 
     componentWillMount() {
@@ -75,8 +75,8 @@ class EditCompany extends Component {
           address: (this.address !== "") ? this.address : companyOrigin.address,
           city: (this.city !== "") ? this.city : companyOrigin.city,
           country: (this.country !== "") ? this.country : companyOrigin.country,
-          mail: (this.mail !== "") ? this.mail : companyOrigin.mail,
-          phone: (this.phone !== "") ? this.phone : companyOrigin.phone,
+          mail: (this.mail == " ") ? companyOrigin.mail : this.mail,
+          phone: (this.phone == " ") ? companyOrigin.phone : this.phone,
         }
           this.props.companyStore.updateCompany(company, this.props.match.params.id);
           this.isEdited = !this.isEdited
