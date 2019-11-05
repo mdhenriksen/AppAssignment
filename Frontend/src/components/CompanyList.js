@@ -39,7 +39,7 @@ class CompanyList extends Component {
         return(<div>
         {!this.isCreated &&
         <form className={classes.container} autoComplete="off">
-        <h1>List & update companies</h1>
+        <h1>Companies list & update</h1>
         <div>
         {companies.map(company => (
             <div key={company.id}>
