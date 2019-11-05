@@ -3,9 +3,11 @@ from flask_cors import CORS
 from CompanyRepository import CompanyRepository
 from CompanyHelperClass import CompanyHelperClass
 from Company import Company
+import os
 import json
 
 app = Flask(__name__)
+port = int(os.environ.get("PORT", 5000))
 CORS(app)
 
 companyHelper = CompanyHelperClass()
@@ -50,4 +52,4 @@ def addOwner():
          return Response("Error adding owner", 404)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True, host='0.0.0.0',port=port)
