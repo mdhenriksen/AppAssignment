@@ -50,4 +50,4 @@ def addOwner():
          return Response("Error adding owner", 404)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='https://gentle-island-55299.herokuapp.com/', port=5000)
