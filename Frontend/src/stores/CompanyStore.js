@@ -13,7 +13,7 @@ class CompanyStore {
         this.isFetching = true;
         this.error = null;
         try {
-            const response = await axios.post('http://localhost:5000/create', company);
+            const response = await axios.post('http://0.0.0.0/create', company);
             this.company = response.data;
             this.isFetching = false;
         } catch (error) {
