@@ -13,7 +13,7 @@ class CompanyStore {
         this.isFetching = true;
         this.error = null;
         try {
-            const response = await axios.post('http://0.0.0.0/create', company);
+            const response = await axios.post('http://0.0.0.0:5000/create', company);
             this.company = response.data;
             this.isFetching = false;
         } catch (error) {
@@ -26,7 +26,7 @@ class CompanyStore {
         this.isFetching = true;
         this.error = null;
         try {
-            await axios.put('http://localhost:5000/update/' + id, company);
+            await axios.put('http://0.0.0.0:5000/update/' + id, company);
             this.isFetching = false;
         } catch (error) {
             this.error = error;
@@ -39,7 +39,7 @@ class CompanyStore {
         this.error = null;
         this.company = []
         try {
-            const response = await axios.get('http://localhost:5000/get/' + id);
+            const response = await axios.get('http://0.0.0.0:5000/get/' + id);
             this.company = response.data
             this.isFetching = false;
         } catch (error) {
@@ -52,7 +52,7 @@ class CompanyStore {
         this.isFetching = true;
         this.error = null;
         try {
-            const response = await axios.get('http://localhost:5000/get');
+            const response = await axios.get('http://0.0.0.0:5000/get');
             this.companies = response.data
             this.isFetching = false;
         } catch (error) {
@@ -65,7 +65,7 @@ class CompanyStore {
         this.isFetching = true;
         this.error = null;
         try {
-            await axios.post('http://localhost:5000/owner', owner);
+            await axios.post('http://0.0.0.0:5000/owner', owner);
             this.isFetching = false;
         } catch (error) {
             this.error = error;
