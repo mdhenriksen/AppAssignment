@@ -88,7 +88,9 @@ class EditCompany extends Component {
     render() {
     const { classes } = this.props;
     const { company } = this.props.companyStore;
+    const { isFetching } = this.props.companyStore
         return(<div>
+        { !isFetching && <div>
         {!this.isEdited &&
         <form className={classes.container} onSubmit={this.submit.bind(this)} autoComplete="off">
         <h1>Edit Company</h1>
@@ -159,7 +161,8 @@ class EditCompany extends Component {
     <div className={classes.container}>
     {this.isEdited && <h2>Company has been edited</h2>}
     </div>
-    </div>)
+    </div>}
+        { isFetching && <div className={classes.container} style={{ marginTop: 20 }}>Loading company...</div>}</div>)
     }
 }
 

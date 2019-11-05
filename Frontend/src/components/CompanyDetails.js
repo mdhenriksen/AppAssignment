@@ -28,7 +28,8 @@ class CompanyDetails extends Component {
     render() {
     const { classes } = this.props;
     const { company } = this.props.companyStore;
-        return(<div className={classes.container}>
+    const { isFetching } = this.props.companyStore
+        return(<div className={classes.container}>{ !isFetching && <div>
             {company.map(company => (
             <div key={company.id}>
                 <div><h1>{company.name}</h1>
@@ -38,6 +39,7 @@ class CompanyDetails extends Component {
                 <div className={classes.companyField}><h2>Mail: {company.mail}</h2></div>
                 <div className={classes.companyField}><h2>Phone: {company.phone}</h2></div></div>
             </div>))}
-    </div>)}}
+            </div>}
+            { isFetching && <div className={classes.companyField}>Loading company...</div>}</div>)}}
 
 export default withStyles(useStyles) (CompanyDetails);

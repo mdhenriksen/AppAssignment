@@ -70,7 +70,6 @@ class CompanyStore {
         } catch (error) {
             this.error = error;
             this.isFetching = false;
-            console.log("Error")
         }
     }
 }

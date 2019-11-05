@@ -36,7 +36,9 @@ class CompanyList extends Component {
     render() {
     const { classes } = this.props;
     const { companies } = this.props.companyStore;
+    const { isFetching } = this.props.companyStore
         return(<div>
+        { !isFetching && <div>
         {!this.isCreated &&
         <form className={classes.container} autoComplete="off">
         <h1>Companies list & update</h1>
@@ -54,7 +56,9 @@ class CompanyList extends Component {
     <div className={classes.container}>
     {this.isCreated && <h2>Company has been updated</h2>}
     </div>
-    </div>)}
+    </div>}
+        { isFetching && <div className={classes.container} style={{ marginTop: 20 }}>Loading companies...</div>}
+        </div>)}
 }
 
 export default withStyles(useStyles) (CompanyList);
