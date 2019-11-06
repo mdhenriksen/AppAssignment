@@ -17,6 +17,8 @@ The backend supports curl at the following endpoints:
 * https://bindapi.herokuapp.com/owner/[ID] (POST: Owner to specific company)
 * https://bindapi.herokuapp.com/update/[ID] (PUT: Company with the company id)
 
+**ID's:** ID's for testing; 499, 450, 502. Other ID's can also be found in the frontend by their id in the URL.
+
 ### cURL format
 The curl takes JSON formatted data. The owners can't be accessed by cURL or the frontend, but are stored in the database with a reference to the company they belong to.
 
