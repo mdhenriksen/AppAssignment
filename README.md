@@ -6,6 +6,9 @@ The frontend and backend is hosted in two seperate docker containers on Heroku a
 * Frontend: https://appassign.herokuapp.com/
 * Backend: https://bindapi.herokuapp.com/
 
+## Heroku dynos
+When accessing the services the first time, there might be a delay or Heroku error. This is due to the fact that the Heroku dynos that are hosting the system are free, which means that they will sleep when not in use and have to start up if they haven't been used in a while. 
+
 ## cURL
 The backend supports curl at the following endpoints:
 * https://bindapi.herokuapp.com/get (GET: List of companies)
