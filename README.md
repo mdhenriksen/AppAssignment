@@ -24,7 +24,6 @@ The curl takes JSON formatted data. The owners can't be accessed by cURL or the 
 
 ```
 {
-"id": "",
 "name": "",
 "address": "",
 "city": "",
@@ -38,7 +37,6 @@ The curl takes JSON formatted data. The owners can't be accessed by cURL or the 
 
 ```
 {
-"id": "",
 "name": ""
 }
 ```
