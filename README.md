@@ -24,6 +24,7 @@ The curl takes JSON formatted data. The owners can't be accessed by cURL or the 
 
 ```
 {
+"id": "",
 "name": "",
 "address": "",
 "city": "",
@@ -32,14 +33,17 @@ The curl takes JSON formatted data. The owners can't be accessed by cURL or the 
 "phone": ""
 }
 ```
+Note: The company ID is generated in the API, so the "id" field can be left empty. Any value added to the ID will not be used. This is due to the backend requiring an "id" field in the JSON body or it throws an error. This could/should be changed by removing the need for an ID field in the JSON.
 
 **Owner**
 
 ```
 {
+"id": "",
 "name": ""
 }
 ```
+Note: The frontend gets the ID from the URL however like above, the API expects an ID field in the JSON body for the same reason as with "company".
 
 ## SQL Tables
 **Companies**
