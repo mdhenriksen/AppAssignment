@@ -14,8 +14,8 @@ The backend supports curl at the following endpoints:
 * https://bindapi.herokuapp.com/get (GET: List of companies)
 * https://bindapi.herokuapp.com/create (POST: Company)
 * https://bindapi.herokuapp.com/details/[ID] (GET: details about specific company)
-* https://appassign.herokuapp.com/owner/[ID] (POST: Owner to specific company)
-* https://appassign.herokuapp.com/edit/[ID] (PUT: Company with the company id)
+* https://bindapi.herokuapp.com/owner/[ID] (POST: Owner to specific company)
+* https://bindapi.herokuapp.com/update/[ID] (PUT: Company with the company id)
 
 ### cURL format
 The curl takes JSON formatted data. The owners can't be accessed by cURL or the frontend, but are stored in the database with a reference to the company they belong to.
