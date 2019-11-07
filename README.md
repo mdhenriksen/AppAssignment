@@ -13,11 +13,37 @@ When accessing the services the first time, there might be a delay or Heroku err
 The backend supports curl at the following endpoints:
 * https://bindapi.herokuapp.com/get (GET: List of companies)
 * https://bindapi.herokuapp.com/create (POST: Company)
-* https://bindapi.herokuapp.com/details/[ID] (GET: details about specific company)
-* https://bindapi.herokuapp.com/owner/[ID] (POST: Owner to specific company)
+* https://bindapi.herokuapp.com/get/[ID] (GET: details about specific company)
+* https://bindapi.herokuapp.com/owner (POST: Owner to specific company)
 * https://bindapi.herokuapp.com/update/[ID] (PUT: Company with the company id)
 
 **ID's:** ID's for testing; 499, 450, 502. Other ID's can also be found in the frontend by their id in the URL.
+
+### Examples
+
+Create company:
+```
+curl -d '{"id": "", "name": "H&M", "address": "Tøjvej 5", "city": "Aarhus", "country": "Denmark", "mail": "hm@hm.dk", "phone": "66776677"}' -H "Content-Type: application/json" -X POST https://bindapi.herokuapp.com/create
+```
+Update company
+```
+curl -d '{"id": "", "name": "Bestseller A/S", "address": "Havnegade 1", "city": "Aarhus", "country": "Denmark", "mail": "best@seller.dk", "phone": "66776677"}' -H "Content-Type: application/json" -X PUT https://bindapi.herokuapp.com/update/450
+```
+
+Get all companies
+```
+curl https://bindapi.herokuapp.com/get
+```
+
+Get company details:
+```
+curl https://bindapi.herokuapp.com/get/450
+```
+
+Post owner
+```
+curl -d '{"id": "499", "name": "Lars Madsen"}' -H "Content-Type: application/json" -X POST https://bindapi.herokuapp.com/owner
+```
 
 ### cURL format
 The curl takes JSON formatted data. The owners can't be accessed by cURL or the frontend, but are stored in the database with a reference to the company they belong to.
