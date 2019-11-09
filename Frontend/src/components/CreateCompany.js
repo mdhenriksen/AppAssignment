@@ -82,6 +82,8 @@ class CreateCompany extends Component {
     */
     render() {
     const { classes } = this.props;
+    const { isFetching } = this.props.companyStore;
+    const { error } = this.props.companyStore;
         return(<div>
         {!this.isCreated &&
         <form className={classes.container} onSubmit={this.submit.bind(this)} autoComplete="off">
@@ -143,7 +145,9 @@ class CreateCompany extends Component {
       </Button>
     </form>}
     <div className={classes.container}>
-    {this.isCreated && <h2>Company has been created</h2>}
+    {(this.isCreated && !isFetching && error == null) && <h2>Company has been created</h2>}
+    {(this.isCreated && isFetching) && <h2>Creating company</h2>}
+    {(this.isCreated && !isFetching && error != null) && <h2>There was an error adding the company!</h2>}
     </div>
     </div>)
     }
