@@ -32,6 +32,7 @@ class CompanyList extends Component {
 
     componentDidMount() {
         this.getCompanies();
+        this.props.companyStore.isLoaded = false;
     }
 
     render() {

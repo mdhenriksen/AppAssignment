@@ -42,6 +42,7 @@ class EditCompany extends Component {
 
     componentDidMount() {
        this.props.companyStore.getCompany(this.props.match.params.id)
+
     }
 
     handleName = (e) => {
@@ -91,10 +92,12 @@ class EditCompany extends Component {
     const { classes } = this.props;
     const { company } = this.props.companyStore;
     const { isFetching } = this.props.companyStore
+    const { isLoaded } = this.props.companyStore
     const { error } = this.props.companyStore;
+    console.log("Is loaded:  " + isLoaded)
         return(<div>
         { !isFetching && <div>
-        { (!this.isEdited && !isFetching) &&
+        { (!this.isEdited && isLoaded) &&
         <form className={classes.container} onSubmit={this.submit.bind(this)} autoComplete="off">
         <h1>Edit Company</h1>
         {company.map(company => (<div className={classes.container} key={company.id}>

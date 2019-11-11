@@ -8,8 +8,10 @@ class CompanyStore {
     @observable isFetching = false;
     @observable companies = [];
     @observable company = [];
+    @observable isLoaded = false;
 
     @action async createCompany(company) {
+        this.isLoaded = false;
         this.isFetching = true;
         this.error = null;
         try {
@@ -42,6 +44,7 @@ class CompanyStore {
             const response = await axios.get('https://bindapi.herokuapp.com/get/' + id);
             this.company = response.data
             this.isFetching = false;
+            this.isLoaded = true;
         } catch (error) {
             this.error = error;
             this.isFetching = false;
