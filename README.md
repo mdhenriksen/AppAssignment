@@ -74,6 +74,10 @@ Note: The company ID is generated in the API, so the "id" field can be left empt
 Note: The frontend gets the ID from the URL however like above, the API expects an ID field in the JSON body for the same reason as with "company".
 
 ## SQL Tables
+
+Databases can be checked with SQL by using psql to access the database via terminal: (Usually I would of course not include the connection string in the GitHub)
+``psql postgres://fyztexzf:178OiBHUrHp3S-2nE39sfeeXdkq9Dqsn@balarama.db.elephantsql.com:5432/fyztexzf``
+
 **Companies**
 ```
 CREATE TABLE companies(
