@@ -91,7 +91,7 @@ class EditCompany extends Component {
     const { isFetching } = this.props.companyStore
         return(<div>
         { !isFetching && <div>
-        {!this.isEdited &&
+        { (!this.isEdited && !isFetching) &&
         <form className={classes.container} onSubmit={this.submit.bind(this)} autoComplete="off">
         <h1>Edit Company</h1>
         {company.map(company => (<div className={classes.container} key={company.id}>
