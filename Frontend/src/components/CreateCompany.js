@@ -4,6 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/styles';
 import { observable } from "mobx";
 import Button from '@material-ui/core/Button';
+import Loader from './Loader';
+
 
 const useStyles = theme => ({
     container: {
@@ -82,6 +84,8 @@ class CreateCompany extends Component {
     */
     render() {
     const { classes } = this.props;
+    const { isFetching } = this.props.companyStore;
+    const { error } = this.props.companyStore;
         return(<div>
         {!this.isCreated &&
         <form className={classes.container} onSubmit={this.submit.bind(this)} autoComplete="off">
@@ -143,7 +147,9 @@ class CreateCompany extends Component {
       </Button>
     </form>}
     <div className={classes.container}>
-    {this.isCreated && <h2>Company has been created</h2>}
+    {(this.isCreated && !isFetching && error == null) && <h2>Company has been created</h2>}
+    {(this.isCreated && isFetching) && <Loader />}
+    {(this.isCreated && !isFetching && error != null) && <h2>There was an error adding the company!</h2>}
     </div>
     </div>)
     }

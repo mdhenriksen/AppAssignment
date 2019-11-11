@@ -3,6 +3,7 @@ import { inject, observer } from "mobx-react";
 import { withStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import Loader from './Loader';
 
 const useStyles = theme => ({
     container: {
@@ -57,7 +58,7 @@ class CompanyList extends Component {
     {this.isCreated && <h2>Company has been updated</h2>}
     </div>
     </div>}
-        { isFetching && <div className={classes.container} style={{ marginTop: 20 }}>Loading companies...</div>}
+        { isFetching && <div className={classes.container} style={{ marginTop: 20 }}><Loader /></div>}
         </div>)}
 }
 
