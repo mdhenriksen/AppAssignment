@@ -41,6 +41,7 @@ curl https://bindapi.herokuapp.com/get/450
 ```
 
 Post owner
+
 ```
 curl -d '{"id": "499", "name": "Lars Madsen"}' -H "Content-Type: application/json" -X POST https://bindapi.herokuapp.com/owner
 ```
@@ -76,6 +77,7 @@ Note: The frontend gets the ID from the URL however like above, the API expects 
 ## SQL Tables
 
 Databases can be checked with SQL by using psql to access the database via terminal: (Usually I would of course not include the connection string in the GitHub)
+
 ``psql postgres://fyztexzf:178OiBHUrHp3S-2nE39sfeeXdkq9Dqsn@balarama.db.elephantsql.com:5432/fyztexzf``
 
 **Companies**
