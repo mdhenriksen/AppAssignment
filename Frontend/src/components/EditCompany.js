@@ -94,7 +94,6 @@ class EditCompany extends Component {
     const { isFetching } = this.props.companyStore
     const { isLoaded } = this.props.companyStore
     const { error } = this.props.companyStore;
-    console.log("Is loaded:  " + isLoaded)
         return(<div>
         { !isFetching && <div>
         { (!this.isEdited && isLoaded) &&
