@@ -4,6 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/styles';
 import { observable } from "mobx";
 import Button from '@material-ui/core/Button';
+import Loader from './Loader';
+
 
 const useStyles = theme => ({
     container: {
@@ -89,6 +91,7 @@ class EditCompany extends Component {
     const { classes } = this.props;
     const { company } = this.props.companyStore;
     const { isFetching } = this.props.companyStore
+    const { error } = this.props.companyStore;
         return(<div>
         { !isFetching && <div>
         {!this.isEdited &&
@@ -159,11 +162,16 @@ class EditCompany extends Component {
       </div>))}
     </form>}
     <div className={classes.container}>
-    {this.isEdited && <h2>Company has been edited</h2>}
+    {(this.isEdited && !isFetching && error == null) && <h2>Company has been edited</h2>}
+    {(this.isEdited && !isFetching && error != null) && <h2>There was an error editing the company!</h2>}
     </div>
     </div>}
-        { isFetching && <div className={classes.container} style={{ marginTop: 20 }}>Loading company...</div>}</div>)
+    <div className={classes.container} style={{ marginTop: 20 }}>
+    {(isFetching && !this.isEdited) && <Loader />}
+    {(this.isEdited && isFetching) && <Loader />}</div></div>)
     }
+    
+
 }
 
 export default withStyles(useStyles) (EditCompany);

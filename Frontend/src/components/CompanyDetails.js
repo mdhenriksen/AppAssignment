@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import { withStyles } from '@material-ui/styles';
+import Loader from './Loader';
 
 const useStyles = theme => ({
     container: {
@@ -40,6 +41,6 @@ class CompanyDetails extends Component {
                 <div className={classes.companyField}><h2>Phone: {company.phone}</h2></div></div>
             </div>))}
             </div>}
-            { isFetching && <div className={classes.companyField}>Loading company...</div>}</div>)}}
+            { isFetching && <div className={classes.companyField}><Loader /></div>}</div>)}}
 
 export default withStyles(useStyles) (CompanyDetails);
